@@ -88,64 +88,68 @@ function reSelect(){
     let transport = randomTransport();
     let restaurant = randomRestaurant();
     let entertainment = randomEntertainment();
-    let confirm = prompt("Enter Y/y to re-select or N/n to accept options")
+    let count = 0; 
+    let printTrip = "";
     
-    while(confirm === "Y" || confirm === "y"){
-        let printTrip = ("You will be going to " + destination + " in a " + 
+    do{
+        
+        printTrip = ("You will be going to " + destination + " in a " + 
         transport + ". You will be doing this activity, " +  entertainment + 
         ", and eating at " + restaurant + " afterwards.");
-        console.log(printTrip);
+        //console.log(printTrip);
         
-        let input = parseInt(prompt("To re-select options, enter 1 for destination, 2 for restaurant, 3 for transportation, 4 for entertainment, or 5 all options)"));
-        let options = [];
-        let count = 5;
-        if(input > 0 && input <= 5){
+        let input = parseInt(prompt("Choose an option to re-select by entering 1 for destination, 2 for transportation," + 
+        "3 for restaurant, 4 for entertainment, 5 to accept options"));
+        if(input === 5){
+            count++;
+            console.log(printTrip);
+            return(printTrip);
+            //break;
+        }
+        else{
             
             if(input === 1){
                 let newDestination = randomDestination();
                 printTrip = printTrip.replace(destination, newDestination);
-                console.log(printTrip);
+                //console.log(printTrip);
+                
             }
             else if(input === 2){
                 let newTransport = randomTransport();
                 printTrip = printTrip.replace(transport, newTransport);
-                console.log(printTrip)
+                //console.log(printTrip);
+                
             }
             else if(input === 3){
                 let newRestaurant = randomRestaurant();
                 printTrip = printTrip.replace(restaurant, newRestaurant);
-                console.log(printTrip)
+                //console.log(printTrip);
+                
             }
             else if(input === 4){
                 let newEntertainment = randomEntertainment();
                 printTrip = printTrip.replace(entertainment, newEntertainment);
-                console.log(printTrip)
+               //console.log(printTrip);
+                
             }
-                return;
-            //console.log(printTrip);
+            console.log(printTrip);
             
+        }
+        //return;
+        
+
         // write out current trip
         // ask for confirmation of curent trip, if no confirmation, go again
-        
-    }
-
-   }
-
+    } while(count === 0);   
     
-}
-
+    
+}   
 
 reSelect();
 // cal dayTrip here
 
 
-// RE-SELECT 
-// as if user likes the selected options
-// if user likes selections, store options
-    // otherwise re-select the option(s)
-        // re-run the function if they choose option 1-4 for destination, restaurant, transport, or entertainment
-        // store new option generated
-
+// Confirm my day trip is complete
 
 
 
