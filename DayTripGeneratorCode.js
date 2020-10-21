@@ -17,8 +17,8 @@ function randomDestination(){
     for(let i = Math.floor(Math.random() * 3); i < destination.length; i++){
           
         if(i === 0 ||  i  === 1 || i === 2){
-            console.log(destination[i]);
-            break;
+            //console.log(destination[i]);
+            return destination[i];
 
         }
              
@@ -35,8 +35,8 @@ function randomRestaurant(){
     for(let i = Math.floor(Math.random() * 3); i < restaurant.length; i++){
 
         if(i === 0 ||  i  === 1 || i === 2){
-            console.log(restaurant[i]);
-            break;
+           // console.log(restaurant[i]);
+            return restaurant[i];
 
         }
 
@@ -46,13 +46,13 @@ function randomRestaurant(){
 
 function randomTransport(){
 
-    let transportation = ["Ferrari 458", "Lambo Huracan", "Focus ST", "Godzilla"];
+    let transportation = ["Ferrari 458", "Lambo Huracan", "Focus ST", "Soccer-mom Van"];
 
     for(let i = Math.floor(Math.random()* 4); i < transportation.length; i++){
         
         if(i === 0 ||  i  === 1 || i === 2 || i === 3){
-            console.log(transportation[i]);
-            break;
+            //console.log(transportation[i]);
+            return transportation[i];
         }
     }
     
@@ -62,47 +62,81 @@ function randomTransport(){
 function randomEntertainment(){
 
     let entertainment = ["Museum Tour!", "Zoo day!", "Beach and bikes!", "Explore a park"];
-
+    
     for(let i = Math.floor(Math.random() * 4); i < entertainment.length; i++){
 
         if(i === 0 ||  i  === 1 || i === 2 || i === 3){
-            console.log(entertainment[i]);          
-            break;
+                      
+            return entertainment[i];
         }
     }
      
 
 }
 
-function dayTrip(){
+function printOptions(){
+    
+    randomDestination();
+    randomRestaurant();
+    randomTransport();
+    randomEntertainment();
+}
+
+function reSelect(){
+    //variables for random options
+    let destination = randomDestination();
+    let transport = randomTransport();
+    let restaurant = randomRestaurant();
+    let entertainment = randomEntertainment();
+    let confirm = prompt("Enter Y/y to re-select or N/n to accept options")
+    
+    while(confirm === "Y" || confirm === "y"){
+        let printTrip = ("You will be going to " + destination + " in a " + 
+        transport + ". You will be doing this activity, " +  entertainment + 
+        ", and eating at " + restaurant + " afterwards.");
+        console.log(printTrip);
+        
+        let input = parseInt(prompt("To re-select options, enter 1 for destination, 2 for restaurant, 3 for transportation, 4 for entertainment, or 5 all options)"));
+        let options = [];
+        let count = 5;
+        if(input > 0 && input <= 5){
+            
+            if(input === 1){
+                let newDestination = randomDestination();
+                printTrip = printTrip.replace(destination, newDestination);
+                console.log(printTrip);
+            }
+            else if(input === 2){
+                let newTransport = randomTransport();
+                printTrip = printTrip.replace(transport, newTransport);
+                console.log(printTrip)
+            }
+            else if(input === 3){
+                let newRestaurant = randomRestaurant();
+                printTrip = printTrip.replace(restaurant, newRestaurant);
+                console.log(printTrip)
+            }
+            else if(input === 4){
+                let newEntertainment = randomEntertainment();
+                printTrip = printTrip.replace(entertainment, newEntertainment);
+                console.log(printTrip)
+            }
+                return;
+            //console.log(printTrip);
+            
+        // write out current trip
+        // ask for confirmation of curent trip, if no confirmation, go again
+        
+    }
+
+   }
 
     
-    // loop here
-    //while(false){
-    let destinationChoice = randomDestination();
-    let restaurantChoice = randomRestaurant();
-    let transportChoice = randomTransport();
-    let entertainmentChoice = randomEntertainment();
-    // write out current trip
-    // ask for confirmation of curent trip, if no confirmation, go again
-    console.log("You will be going to " + destinationChoice + " in a " + 
-    transportChoice + ". You will be doing this activity, " +  entertainmentChoice + 
-    ", and eating at " + restaurantChoice + ".");
-    //}
-
 }
-dayTrip();
+
+
+reSelect();
 // cal dayTrip here
-
-// let question = prompt("Do you want to re-select? Y/N for an answer");
-// if(question === "y" || question === "Y"){
-//     console.log("Here is your day trip intinerary: " + "Your vehicle for transportation is a " +
-//     transportChoice + "." + "You will be going to " + destinationChoice + "." + 
-//     " You will be eating at " + restaurantChoice + " followed by " + entertainmentChoice + ".");
-// }
-
-
-
 
 
 // RE-SELECT 
