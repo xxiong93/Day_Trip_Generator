@@ -74,13 +74,6 @@ function randomEntertainment(){
 
 }
 
-function printOptions(){
-    
-    randomDestination();
-    randomRestaurant();
-    randomTransport();
-    randomEntertainment();
-}
 
 function reSelect(){
     //variables for random options
@@ -145,11 +138,24 @@ function reSelect(){
     
 }   
 
-reSelect();
-// cal dayTrip here
 
+// cal dayTrip here
+function confirmTrip(){
+    let trip = reSelect();
+    
+    let ask = prompt("Do you want to keep this trip?");
+    if(ask === "yes"){
+    
+        return trip;
+    }
+    else{
+        reSelect();
+    }
+    
+
+}
 
 // Confirm my day trip is complete
 
 
-
+confirmTrip();
